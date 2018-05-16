@@ -24,4 +24,4 @@
 
 ## Play Quizinator (Hosted on Heroku)
 
-### Click Here => [PLAY LIVE DEMO](https://protected-beyond-32253.herokuapp.com/)ted-beyond-32253.herokuapp.com/)
+### Click Here => [PLAY LIVE DEMO](https://protected-beyond-32253.herokuapp.com/)
