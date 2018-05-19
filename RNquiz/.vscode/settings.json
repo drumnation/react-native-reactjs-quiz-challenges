@@ -2,12 +2,12 @@
   "npm.enableScriptExplorer": true,
   "togglequotes.chars": ["\"", "`"],
   "editor.detectIndentation": true,
-  // "editor.formatOnSave": true,
+  "editor.formatOnSave": true,
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
   "eslint.autoFixOnSave": true,
-  "javascript.format.enable": false,
-  "javascript.validate.enable": false,
-  "prettier.eslintIntegration": true,
+  "javascript.format.enable": true,
+  "javascript.validate.enable": true,
+  "prettier.eslintIntegration": false,
   "java.configuration.updateBuildConfiguration": "automatic"
 }

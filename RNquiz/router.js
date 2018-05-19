@@ -1,31 +1,37 @@
+import React, { Component } from "react";
 import { Router, Scene, Stack } from "react-native-router-flux";
 
-import Intro from "./src/components/Intro";
-import Question from "./src/components/Question";
-import React from "react";
-import Results from "./src/components/Results";
+import ImageBackgroundHOC from "./src/HOCs/ImageBackgroundHOC";
+import Intro from "./src/containers/Intro";
+import Question from "./src/containers/Question";
+import Results from "./src/containers/Results";
 
-const router = () => (
-  <Router>
-    <Stack key="root">
-      <Scene 
-        key="intro" 
-        component={Intro}
-        hideNavBar
-        initial
-      />
-      <Scene 
-        key="question" 
-        component={Question}
-        hideNavBar
-      />
-      <Scene 
-        key="results" 
-        component={Results} 
-        hideNavBar
-      />
-    </Stack>
-  </Router>
-);
+class router extends Component {
+  state = {};
+  render() {
+    return (
+      <Router>
+        <Stack key="root">
+          <Scene
+            key="intro"
+            component={ImageBackgroundHOC(Intro)}
+            hideNavBar
+            initial
+          />
+          <Scene
+            key="question"
+            component={ImageBackgroundHOC(Question)}
+            hideNavBar
+          />
+          <Scene
+            key="results"
+            component={ImageBackgroundHOC(Results)}
+            hideNavBar
+          />
+        </Stack>
+      </Router>
+    );
+  }
+}
 
 export default router;

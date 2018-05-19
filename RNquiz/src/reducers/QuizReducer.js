@@ -1,10 +1,14 @@
 import {
   ADD_TO_RESULTS,
+  CREATE_QUIZ_DATA,
   INCREMENT_QUESTION,
   INCREMENT_SCORE,
   SET_CURRENT_QUESTION,
   SET_FORMATTED_QUESTIONS,
+  SET_IS_CORRECT,
   SET_LOADING_STATE,
+  SET_QUESTION,
+  SET_QUESTION_ANSWERED,
   SET_QUIZ_DATA,
   SET_RESULTS,
   SET_SCORE
@@ -15,56 +19,78 @@ const defaultState = {
   data: null,
   isLoading: null,
   questions: [],
+  question: null,
   results: [],
-  score: 0
+  score: 0,
+  answered: false,
+  correct: null
 };
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
-    case SET_LOADING_STATE:
-      return {
-        ...state,
-        isLoading: action.isLoading
-      };
     case ADD_TO_RESULTS:
       return {
         ...state,
         results: [...state.results, action.result]
       };
-    case SET_SCORE:
+    case CREATE_QUIZ_DATA:
       return {
-        ...state,
-        score: action.score
+        ...state
       };
-    case SET_RESULTS:
+    case INCREMENT_QUESTION:
       return {
         ...state,
-        results: action.results
-      };
-    case SET_QUIZ_DATA:
-      return {
-        ...state,
-        data: action.quizData
-      };
-    case SET_FORMATTED_QUESTIONS:
-      return {
-        ...state,
-        questions: action.questions
+        current: state.current + 1
       };
     case INCREMENT_SCORE:
       return {
         ...state,
-        score: (state.score + 1)
+        score: state.score + 1
       };
     case SET_CURRENT_QUESTION:
       return {
         ...state,
         current: action.currentQuestion
       };
-    case INCREMENT_QUESTION:
+    case SET_FORMATTED_QUESTIONS:
       return {
         ...state,
-        current: (state.current + 1)
+        questions: action.payload
+      };
+    case SET_IS_CORRECT:
+      return {
+        ...state,
+        correct: action.correct
+      };
+    case SET_LOADING_STATE:
+      return {
+        ...state,
+        isLoading: action.isLoading
+      };
+    case SET_QUESTION:
+      return {
+        ...state,
+        question: action.payload
+      };
+    case SET_QUESTION_ANSWERED:
+      return {
+        ...state,
+        answered: action.answered
+      };
+    case SET_QUIZ_DATA:
+      return {
+        ...state,
+        data: action.quizData
+      };
+    case SET_RESULTS:
+      return {
+        ...state,
+        results: action.results
+      };
+    case SET_SCORE:
+      return {
+        ...state,
+        score: action.score
       };
     default:
       return state;
