@@ -1,26 +1,25 @@
-import axios from "axios"
+import axios from "axios";
 
 const getQuestionsFromAPI = async () => {
   try {
-    const response = await axios.get("https://opentdb.com/api.php?amount=10")
-    return response.data.results
+    const response = await axios.get("https://opentdb.com/api.php?amount=10");
+    return response.data.results;
   } catch (err) {
-    console.log(err)
+    console.log("Error:", err.message, err.code);
   }
-}
+};
 
-const decodeHTML = (html) => {
-  var txt = document.createElement("textarea")
-  txt.innerHTML = html
-  return txt.value
-}
+const decodeHTML = html => {
+  var txt = document.createElement("textarea");
+  txt.innerHTML = html;
+  return txt.value;
+};
 
-const formatChoices = choices => {
-  return choices.map((choice, index) => {
-    return { text: decodeHTML(choice.trim()) }
-  })
-}
-const combineAllChoices = question => question.correct_answer.split(",").concat(question.incorrect_answers)
+const formatChoices = choices =>
+  choices.map(choice => ({ text: decodeHTML(choice.trim()) }));
+
+const combineAllChoices = question =>
+  question.correct_answer.split(",").concat(question.incorrect_answers);
 
 const formatQuestion = (question, index) => {
   return {
@@ -32,23 +31,21 @@ const formatQuestion = (question, index) => {
     choices: formatChoices(combineAllChoices(question)),
     correct: decodeHTML(question.correct_answer.trim()),
     incorrect: question.incorrect_answers
-  }
-}
+  };
+};
 
 const formatAPIQuizData = questions => {
-  return questions.map((question, index) => {
-    return formatQuestion(question, index)
-  })
-}
+  return questions.map((question, index) => formatQuestion(question, index));
+};
 
 const createQuizData = async () => {
   try {
-    const questions = await getQuestionsFromAPI()
-    const formattedQuestions = await formatAPIQuizData(questions)
-    return formattedQuestions
+    const questions = await getQuestionsFromAPI();
+    const formattedQuestions = await formatAPIQuizData(questions);
+    return formattedQuestions;
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-}
+};
 
-export { createQuizData }
+export { createQuizData };

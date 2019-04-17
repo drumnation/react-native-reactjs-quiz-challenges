@@ -1,10 +1,18 @@
-import "./App.css"
-
 import React, { Component } from "react"
-import QuestionList from "./components/quiz/QuestionList"
-import Scorebox from "./components/quiz/Scorebox"
-import Results from "./components/quiz/Results"
+
 import { createQuizData as quizData } from "./api/opentdb"
+import Questions from "./components/Questions/Questions"
+import Results from "./components/Results/Results"
+import Scorebox from "./components/Scorebox/Scorebox"
+
+import DevTools from "mobx-react-devtools";
+
+import { Container } from "semantic-ui-react";
+
+import "./App.scss"
+
+const hasLoaded = loading => loading === false;
+const allQuestionsAnswered = (current, questions) => current >= questions.length;
 
 class App extends Component {
   constructor(props) {
@@ -30,24 +38,28 @@ class App extends Component {
   setScore = (score) => this.setState({ score })
 
   render() {
-    if (this.state.loading === false) {
-      if (this.state.current >= this.state.questions.length) {
-        var scorebox = ""
-        var results = <Results {...this.state} />
+    const { loading, current, questions } = this.state;
+    let ScoreboxUi = ""
+    let ResultsUi = ""
+    if (hasLoaded(loading)) {
+      if (allQuestionsAnswered(current, questions)) {
+        ResultsUi = <Results {...this.state} />
       } else {
-        scorebox = <Scorebox {...this.state} />
-        results = ""
+        ScoreboxUi = <Scorebox {...this.state} />
       }
       return (
-        <div>
-          {scorebox}
-          <QuestionList
-            {...this.state}
+        <Container>
+          {ScoreboxUi}
+          <Questions
+            current={this.state.current}
+            questions={this.state.questions}
+            score={this.state.score}
             setCurrent={this.setCurrent}
             setScore={this.setScore}
           />
-          {results}
-        </div>
+          {ResultsUi}
+          <DevTools />
+        </Container>
       )
     } else {
       return null
