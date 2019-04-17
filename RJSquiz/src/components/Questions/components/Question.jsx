@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from "react";
-import { Header, Container, Label } from "semantic-ui-react";
+import React, { Component } from "react";
+import { Header, Label } from "semantic-ui-react";
 import ResultsLane from "../../ResultsLane/ResultsLane";
 import Choice from "./Choice";
 import { generate } from "shortid";
@@ -37,12 +37,14 @@ export default class Question extends Component {
   render() {
     const { text, choices, category, difficulty } = this.props.question;
     return (
-      <Fragment>
+      <div className="question">
         {hasAnsweredQuestions(results) ? (
           <ResultsLane results={results} />
         ) : null}
-        <Container className="questions question background">
-          <Header as="h3" text-align="center">
+        <div className="background">
+          <Label color="black" className="difficulty">{difficulty}</Label>
+          <Label color="grey" className="category">{category}</Label>
+          <Header as="h2" text-align="center">
             {text}
           </Header>
           <hr />
@@ -56,14 +58,9 @@ export default class Question extends Component {
               />
             );
           })}
-          <div>
-            <Label primary>{category.toUpperCase()}</Label>
-          </div>
-          <div>
-            <Label>{difficulty.toUpperCase()}</Label>
-          </div>
-        </Container>
-      </Fragment>
+          
+        </div>
+      </div>
     );
   }
 }

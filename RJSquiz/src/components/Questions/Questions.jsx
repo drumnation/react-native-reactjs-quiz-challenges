@@ -1,5 +1,5 @@
 import { generate } from "shortid";
-import React, { Fragment } from "react";
+import React from "react";
 
 import Question from "./components/Question";
 
@@ -7,7 +7,7 @@ const isCurrentQuestion = (id, current) => id === current;
 
 const Questions = ({ questions, current, setScore, setCurrent, score }) => {
   return (
-    <Fragment>
+    <div className="questions">
       {questions.map(question => {
         const { id } = question;
         return isCurrentQuestion(id, current) ? (
@@ -21,7 +21,7 @@ const Questions = ({ questions, current, setScore, setCurrent, score }) => {
           />
         ) : null;
       })}
-    </Fragment>
+    </div>
   );
 };
 

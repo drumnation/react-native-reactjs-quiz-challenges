@@ -1,18 +1,16 @@
 import React from "react";
-import { Container } from "semantic-ui-react";
 import { generate } from "shortid";
 
-const isX = result => result === "X";
-
-const resultStyle = result =>
-  isX(result)
+const resultStyle = result => {
+  const isX = result => result === "X";
+  return isX(result)
     ? { color: "#FF0000" } 
     : { color: "#008000" };
+}
 
 const ResultsLane = ({ results }) => {
-  
   return (
-    <Container text-align="center" className="results">
+    <div text-align="center" className="results-lane">
       {results.map(result => {
         return (
           <span key={generate()} style={resultStyle(result)}>
@@ -20,7 +18,7 @@ const ResultsLane = ({ results }) => {
           </span>
         );
       })}
-    </Container>
+    </div>
   );
 };
 export default ResultsLane;

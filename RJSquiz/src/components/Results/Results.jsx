@@ -1,5 +1,5 @@
-import { Button, Well } from "react-bootstrap";
-import React, { Fragment } from "react";
+import { Button, Header, Icon, Label } from "semantic-ui-react";
+import React from "react";
 
 import AnswerKey from "../AnswerKey/AnswerKey";
 
@@ -20,31 +20,27 @@ const createScoreMessage = percent => {
 const Results = ({ score, questions }) => {
   const percent = (score / questions.length) * 100;
   return (
-    <Fragment>
-      <Well>
-        <center>
-          <h4>
-            You Got {score} out of {questions.length} Correct
-          </h4>
-          <h1>{percent}%</h1>
-          <hr />
-          <h2>{createScoreMessage(percent)}</h2>
-        </center>
+    <div className="results">
+      <Header className="scores">
+        <h1>You Got {score} out of {questions.length} Correct</h1>
+        <Label size="huge" color="blue">{percent}%</Label>
+        <hr />
+        <h2>{createScoreMessage(percent)}</h2>
         <hr />
         <center>
-          <Button bsStyle="success" href="/">
-            Take Again
+          <Button color="green" href="/" size="huge">
+            <Icon className="sync" />Take Again
           </Button>
         </center>
-      </Well>
-      <Well>
+      </Header>
+      <div className="answer-key">
         <center>
-          <h3>Answer Key</h3>
+          <Header as="h1">Answer Key</Header>
         </center>
         <hr />
         <AnswerKey questions={questions} />
-      </Well>
-    </Fragment>
+      </div>
+    </div>
   );
 };
 

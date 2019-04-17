@@ -1,15 +1,14 @@
 import React, { Fragment } from "react";
+import { Label, Header } from "semantic-ui-react"
 
 const Answer = ({ index, correct, text }) => {
   return (
     <Fragment>
       <center>
-        <h4>Question {index + 1}</h4>
-        {text}
-        <br />
-        <br />
-        <h4>Answer</h4>
-        {correct}
+        <Label size="huge" color="black">Question {index + 1}</Label>
+        <Header as="h3">{text}</Header>
+        <Label size="huge" color="orange">Answer</Label>
+        <Header as="h1">{correct}</Header>
       </center>
       <hr />
     </Fragment>

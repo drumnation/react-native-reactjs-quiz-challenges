@@ -1,15 +1,14 @@
 import React, { Component } from "react"
 
 import { createQuizData as quizData } from "./api/opentdb"
+import AppHeader from "./components/AppHeader/AppHeader"
 import Questions from "./components/Questions/Questions"
 import Results from "./components/Results/Results"
 import Scorebox from "./components/Scorebox/Scorebox"
 
 import DevTools from "mobx-react-devtools";
 
-import { Container } from "semantic-ui-react";
-
-import "./App.scss"
+import "./styles/global.scss"
 
 const hasLoaded = loading => loading === false;
 const allQuestionsAnswered = (current, questions) => current >= questions.length;
@@ -48,7 +47,8 @@ class App extends Component {
         ScoreboxUi = <Scorebox {...this.state} />
       }
       return (
-        <Container>
+        <div className="appContainer">
+          <AppHeader />
           {ScoreboxUi}
           <Questions
             current={this.state.current}
@@ -59,7 +59,7 @@ class App extends Component {
           />
           {ResultsUi}
           <DevTools />
-        </Container>
+        </div>
       )
     } else {
       return null

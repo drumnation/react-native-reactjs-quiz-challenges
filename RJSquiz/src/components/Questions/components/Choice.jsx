@@ -5,9 +5,9 @@ const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 const Choice = ({ index, choice, onChange }) => {
   return (
-    <div onClick={event => onChange(event, choice.text)}>
-      <Button content={alphabet[index]} primary />
-      <span className="questions question choice">{choice.text}</span>
+    <div className="group" onClick={event => onChange(event, choice.text)}>
+      <Button content={alphabet[index]} className="button" primary />
+      <span className="choice">{choice.text}</span>
     </div>
   );
 };
