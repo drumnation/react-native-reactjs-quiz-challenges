@@ -44,10 +44,9 @@ export default class Question extends Component {
         <div className="background">
           <Label color="black" className="difficulty">{difficulty}</Label>
           <Label color="grey" className="category">{category}</Label>
-          <Header as="h2" text-align="center">
+          <Header as="h2" text-align="center" className="title">
             {text}
           </Header>
-          <hr />
           {this.shuffleChoices(choices).map((choice, index) => {
             return (
               <Choice

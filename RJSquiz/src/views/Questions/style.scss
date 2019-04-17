@@ -27,10 +27,15 @@
       margin-top: 5%;
       text-transform: uppercase;
     }
+    .title {
+      margin-bottom: 30px;
+    }
     .group {
       align-items: center;
+      border-radius: 10px;
+      border: 1px solid lightgrey;
       display: flex;
-
+      margin-bottom: 10px;
     }
 		.button {
       border-radius: 5px;
