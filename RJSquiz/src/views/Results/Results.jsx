@@ -3,6 +3,8 @@ import React from "react";
 
 import AnswerKey from "../../components/AnswerKey/AnswerKey";
 
+import "./style.scss";
+
 const createScoreMessage = percent => {
   let message = "";
   if (percent === 100) {
@@ -22,14 +24,19 @@ const Results = ({ score, questions }) => {
   return (
     <div className="results">
       <Header className="scores">
-        <h1>You Got {score} out of {questions.length} Correct</h1>
-        <Label size="huge" color="blue">{percent}%</Label>
+        <h1>
+          You Got {score} out of {questions.length} Correct
+        </h1>
+        <Label size="massive" color="blue">
+          {percent}%
+        </Label>
         <hr />
-        <h2>{createScoreMessage(percent)}</h2>
+        <h1>{createScoreMessage(percent)}</h1>
         <hr />
         <center>
           <Button color="green" href="/" size="huge">
-            <Icon className="sync" />Take Again
+            <Icon className="sync" />
+            Take Again
           </Button>
         </center>
       </Header>

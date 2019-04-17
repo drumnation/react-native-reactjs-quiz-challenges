@@ -1,0 +1,13 @@
+.results-lane {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 500%;
+  font-weight: bolder;
+  justify-content: center;
+  margin: 5%;
+  text-align: center;
+  @media only screen and (max-width: 600px) {
+    line-height: 100%;
+    margin: 10%;
+  }
+}

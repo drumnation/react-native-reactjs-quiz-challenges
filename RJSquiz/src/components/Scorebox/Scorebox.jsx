@@ -1,5 +1,6 @@
 import React from "react";
 import { Label } from "semantic-ui-react";
+import "./style.scss";
 
 const Scorebox = ({ current, questions, score }) => {
   return (

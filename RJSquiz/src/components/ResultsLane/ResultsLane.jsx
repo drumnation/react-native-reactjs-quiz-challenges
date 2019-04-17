@@ -1,5 +1,6 @@
 import React from "react";
 import { generate } from "shortid";
+import "./style.scss";
 
 const resultStyle = result => {
   const isX = result => result === "X";

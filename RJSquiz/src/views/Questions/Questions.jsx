@@ -3,6 +3,8 @@ import React from "react";
 
 import Question from "./components/Question";
 
+import "./style.scss";
+
 const isCurrentQuestion = (id, current) => id === current;
 
 const Questions = ({ questions, current, setScore, setCurrent, score }) => {

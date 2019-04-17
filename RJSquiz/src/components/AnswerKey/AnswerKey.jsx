@@ -1,5 +1,6 @@
 import { generate } from "shortid";
 import React from "react";
+import "./style.scss";
 
 import Answer from "./Answer/Answer";
 
