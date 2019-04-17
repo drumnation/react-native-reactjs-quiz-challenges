@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 import { createQuizData as quizData } from "./api/opentdb";
 import AppHeader from "./components/AppHeader/AppHeader";
-import Questions from "./components/Questions/Questions";
-import Results from "./components/Results/Results";
+import Questions from "./views/Questions/Questions";
+import Results from "./views/Results/Results";
 import Scorebox from "./components/Scorebox/Scorebox";
 import { Loader, Dimmer } from "semantic-ui-react";
 
@@ -15,7 +15,7 @@ const hasLoaded = loading => loading === false;
 const allQuestionsAnswered = (current, questions) =>
   current >= questions.length;
 
-class App extends Component {
+class Quiz extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,13 +39,13 @@ class App extends Component {
   setScore = score => this.setState({ score });
 
   render() {
-    const { loading, current, questions } = this.state;
+    const { loading, current, questions, score } = this.state;
     if (hasLoaded(loading)) {
       return (
         <div className="appContainer">
           <AppHeader />
           {allQuestionsAnswered(current, questions) ? null : (
-            <Scorebox {...this.state} />
+            <Scorebox current={current} questions={questions} score={score} />
           )}
           <Questions
             current={this.state.current}
@@ -70,4 +70,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Quiz;

@@ -1,7 +1,7 @@
 import { Button, Header, Icon, Label } from "semantic-ui-react";
 import React from "react";
 
-import AnswerKey from "../AnswerKey/AnswerKey";
+import AnswerKey from "../../components/AnswerKey/AnswerKey";
 
 const createScoreMessage = percent => {
   let message = "";

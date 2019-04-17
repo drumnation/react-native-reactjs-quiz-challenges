@@ -91,11 +91,11 @@ hr {
     border-radius: 0px;
   }
   .group {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     flex: 0.5;
+    justify-content: center;
   }
   .question {
     margin-top: 20px;
@@ -138,29 +138,29 @@ hr {
       }
     }
     .category {
-      margin-top: 5%;
-      margin-bottom: 2%;
       font-size: 120%;
+      margin-bottom: 2%;
+      margin-top: 5%;
       text-transform: uppercase;
     }
     .difficulty {
-      margin-top: 5%;
       font-size: 120%;
-      text-transform: uppercase;
       font-weight: bold;
+      margin-top: 5%;
+      text-transform: uppercase;
     }
     .group {
-      display: flex;
       align-items: center;
+      display: flex;
 
     }
 		.button {
       border-radius: 5px;
-      width: 50px;
       height: 50px;
+      margin-bottom: 1%;
       margin-left: 20px;
       margin-top: 1%;
-      margin-bottom: 1%;
+      width: 50px;
 		}
 		.choice {
 			font-size: 140%;
@@ -178,9 +178,9 @@ hr {
   border-radius: 15px;
   .scores {
     background: white;
-    text-align: center;
     margin-top: 2%;
     padding: 5%;
+    text-align: center;
   }
   .answer-key {
     background: white;
@@ -189,14 +189,14 @@ hr {
 }
 
 .results-lane {
-  font-size: 500%;
-  margin: 5%;
   display: flex;
   flex-wrap: wrap;
+  font-size: 500%;
   font-weight: bolder;
+  margin: 5%;
   text-align: center;
   @media only screen and (max-width: 600px) {
-    margin: 10%;
     line-height: 100%;
+    margin: 10%;
   }
 }
