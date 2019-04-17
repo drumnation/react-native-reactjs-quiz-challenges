@@ -5,6 +5,7 @@ import AppHeader from "./components/AppHeader/AppHeader"
 import Questions from "./components/Questions/Questions"
 import Results from "./components/Results/Results"
 import Scorebox from "./components/Scorebox/Scorebox"
+import { Loader, Dimmer } from "semantic-ui-react";
 
 import DevTools from "mobx-react-devtools";
 
@@ -38,18 +39,11 @@ class App extends Component {
 
   render() {
     const { loading, current, questions } = this.state;
-    let ScoreboxUi = ""
-    let ResultsUi = ""
     if (hasLoaded(loading)) {
-      if (allQuestionsAnswered(current, questions)) {
-        ResultsUi = <Results {...this.state} />
-      } else {
-        ScoreboxUi = <Scorebox {...this.state} />
-      }
       return (
         <div className="appContainer">
           <AppHeader />
-          {ScoreboxUi}
+          {allQuestionsAnswered(current, questions) ? null : <Scorebox {...this.state} />}
           <Questions
             current={this.state.current}
             questions={this.state.questions}
@@ -57,12 +51,12 @@ class App extends Component {
             setCurrent={this.setCurrent}
             setScore={this.setScore}
           />
-          {ResultsUi}
+          {allQuestionsAnswered(current, questions) ? <Results {...this.state} /> : null}
           <DevTools />
         </div>
       )
     } else {
-      return null
+      return <Dimmer active><Loader inverted>Loading</Loader></Dimmer>
     }
   }
 }
