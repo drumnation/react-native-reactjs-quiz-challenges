@@ -1,21 +1,21 @@
+import { Loader, Dimmer } from "semantic-ui-react";
+import DevTools from "mobx-react-devtools";
 import React, { Component } from "react";
 
 import { createQuizData as quizData } from "./api/opentdb";
 import AppHeader from "./components/AppHeader/AppHeader";
-import Questions from "./views/Questions/Questions";
+import Quiz from "./views/Quiz/Quiz";
 import Results from "./views/Results/Results";
-import Scorebox from "./components/Scorebox/Scorebox";
-import { Loader, Dimmer } from "semantic-ui-react";
 
-import DevTools from "mobx-react-devtools";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import "./styles/global.scss";
 
 const hasLoaded = loading => loading === false;
-const allQuestionsAnswered = (current, questions) =>
+const quizCompleted = (current, questions) =>
   current >= questions.length;
 
-class Quiz extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,8 +28,9 @@ class Quiz extends Component {
 
   componentDidMount = async () => {
     this.setState({ loading: true });
+    const questions = await quizData();
     this.setState({
-      questions: await quizData(),
+      questions,
       loading: false
     });
   };
@@ -44,19 +45,42 @@ class Quiz extends Component {
       return (
         <div className="appContainer">
           <AppHeader />
-          {allQuestionsAnswered(current, questions) ? null : (
-            <Scorebox current={current} questions={questions} score={score} />
-          )}
-          <Questions
-            current={this.state.current}
-            questions={this.state.questions}
-            score={this.state.score}
-            setCurrent={this.setCurrent}
-            setScore={this.setScore}
-          />
-          {allQuestionsAnswered(current, questions) ? (
-            <Results {...this.state} />
-          ) : null}
+          <Router>
+            <Switch>
+              {quizCompleted(
+                current,
+                questions
+              ) ? (
+                  <Route
+                    path="/"
+                    exact
+                    render={() => (
+                      <Results
+                        current={current}
+                        questions={questions}
+                        score={score}
+                        setCurrent={this.setCurrent}
+                        setScore={this.setScore}
+                      />
+                    )}
+                  />)
+                : (
+                  <Route
+                    path="/"
+                    exact
+                    render={() => (
+                      <Quiz
+                        current={current}
+                        questions={questions}
+                        score={score}
+                        setCurrent={this.setCurrent}
+                        setScore={this.setScore}
+                      />
+                    )}
+                  />
+                )}
+            </Switch>
+          </Router>
           <DevTools />
         </div>
       );
@@ -70,4 +94,4 @@ class Quiz extends Component {
   }
 }
 
-export default Quiz;
+export default App;

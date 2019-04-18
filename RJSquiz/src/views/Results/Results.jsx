@@ -1,7 +1,7 @@
 import { Button, Header, Icon, Label } from "semantic-ui-react";
 import React from "react";
 
-import AnswerKey from "../../components/AnswerKey/AnswerKey";
+import AnswerKey from "./components/AnswerKey/AnswerKey";
 
 import "./style.scss";
 

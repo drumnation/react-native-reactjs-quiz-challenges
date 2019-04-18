@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Header, Label } from "semantic-ui-react";
-import ResultsLane from "../../../components/ResultsLane/ResultsLane";
+import ResultsLane from "./ResultsLane/ResultsLane";
 import Choice from "./Choice";
 import { generate } from "shortid";
 
