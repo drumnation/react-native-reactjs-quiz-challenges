@@ -9,8 +9,6 @@ import "./style.scss";
 const isCurrentQuestion = (id, current) => id === current;
 
 const Quiz = ({ questions, current, setScore, setCurrent, score }) => {
-  console.log("TCL: Quiz -> questions, current, setScore, setCurrent, score", questions, current, setScore, setCurrent, score)
-  console.log("TCL: Quiz -> current", current)
   return (
     <div className="quiz">
       {questions.map(question => {

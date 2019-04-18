@@ -7,6 +7,9 @@ import AppHeader from "./components/AppHeader/AppHeader";
 import Quiz from "./views/Quiz/Quiz";
 import Results from "./views/Results/Results";
 
+import { observer } from "mobx-react"
+import { StoreProvider } from "./components/StoreContext/StoreContext";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import "./styles/global.scss";
@@ -15,6 +18,7 @@ const hasLoaded = loading => loading === false;
 const quizCompleted = (current, questions) =>
   current >= questions.length;
 
+@observer
 class App extends Component {
   constructor(props) {
     super(props);
@@ -40,49 +44,52 @@ class App extends Component {
   setScore = score => this.setState({ score });
 
   render() {
+    const { store } = this.props;
     const { loading, current, questions, score } = this.state;
     if (hasLoaded(loading)) {
       return (
-        <div className="appContainer">
-          <AppHeader />
-          <Router>
-            <Switch>
-              {quizCompleted(
-                current,
-                questions
-              ) ? (
-                  <Route
-                    path="/"
-                    exact
-                    render={() => (
-                      <Results
-                        current={current}
-                        questions={questions}
-                        score={score}
-                        setCurrent={this.setCurrent}
-                        setScore={this.setScore}
-                      />
-                    )}
-                  />)
-                : (
-                  <Route
-                    path="/"
-                    exact
-                    render={() => (
-                      <Quiz
-                        current={current}
-                        questions={questions}
-                        score={score}
-                        setCurrent={this.setCurrent}
-                        setScore={this.setScore}
-                      />
-                    )}
-                  />
-                )}
-            </Switch>
-          </Router>
-          <DevTools />
-        </div>
+        <StoreProvider value={store}>
+          <div className="appContainer">
+            <AppHeader />
+            <Router>
+              <Switch>
+                {quizCompleted(
+                  current,
+                  questions
+                ) ? (
+                    <Route
+                      path="/"
+                      exact
+                      render={() => (
+                        <Results
+                          current={current}
+                          questions={questions}
+                          score={score}
+                          setCurrent={this.setCurrent}
+                          setScore={this.setScore}
+                        />
+                      )}
+                    />)
+                  : (
+                    <Route
+                      path="/"
+                      exact
+                      render={() => (
+                        <Quiz
+                          current={current}
+                          questions={questions}
+                          score={score}
+                          setCurrent={this.setCurrent}
+                          setScore={this.setScore}
+                        />
+                      )}
+                    />
+                  )}
+              </Switch>
+            </Router>
+            <DevTools />
+          </div>
+        </StoreProvider>
       );
     } else {
       return (
