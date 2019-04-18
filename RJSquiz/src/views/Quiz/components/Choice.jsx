@@ -3,9 +3,10 @@ import { Button } from "semantic-ui-react";
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
-const Choice = ({ index, choice, onChange }) => {
+const Choice = ({ index, choice, onAnswerSelect, ...other }) => {
+  const { text } = choice;
   return (
-    <div className="group" onClick={event => onChange(event, choice.text)}>
+    <div className="group" onClick={event => onAnswerSelect(event, text, other)}>
       <Button content={alphabet[index]} className="button" primary />
       <span className="choice">{choice.text}</span>
     </div>

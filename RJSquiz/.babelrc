@@ -1,5 +1,10 @@
 {
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
   "plugins": [
-    "transform-decorators-legacy"
+    "babel-plugin-mobx-deep-action",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    ["@babel/plugin-proposal-object-rest-spread", { "useBuiltIns": true }],
+    "@babel/plugin-transform-runtime"
   ]
 }

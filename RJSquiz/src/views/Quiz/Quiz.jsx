@@ -8,24 +8,35 @@ import "./style.scss";
 
 const isCurrentQuestion = (id, current) => id === current;
 
-const Quiz = ({ questions, current, setScore, setCurrent, score }) => {
+const Quiz = ({
+  current,
+  onAnswerSelect,
+  questions,
+  results,
+  score,
+  setCurrent,
+  setScore,
+  shuffleChoices
+}) => {
   return (
     <div className="quiz">
       {questions.map(question => {
         const { id } = question;
         return isCurrentQuestion(id, current) ? (
-          <Fragment>
+          <Fragment key={generate()}>
             <Scorebox current={current} questions={questions} score={score} />
             <Question
               current={current}
-              key={generate()}
+              onAnswerSelect={onAnswerSelect}
               question={question}
+              results={results}
               score={score}
               setCurrent={setCurrent}
               setScore={setScore}
+              shuffleChoices={shuffleChoices}
             />
           </Fragment>
-        ) : <div>No Questions...</div>;
+        ) : null;
       })}
     </div>
   );

@@ -8,8 +8,4 @@
 # (React.js) Trivia Game using OpenTrivia API
 ## Completed in August 2017 for PureWow
 
-[![quizinator](screenshots/quizinator.gif)](https://protected-beyond-32253.herokuapp.com/)
-
-## Play Quizinator (Hosted on Heroku)
-
-### Click Here => [PLAY LIVE DEMO](https://protected-beyond-32253.herokuapp.com/)
+[![quizinator](screenshots/quizinator.png)](https://protected-beyond-32253.herokuapp.com/)

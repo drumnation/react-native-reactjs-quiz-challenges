@@ -5,10 +5,10 @@ const AppHeader = () => {
   return (
     <div className="app-header">
       <div className="app-container">
-        <img className="logo" src='/logo.png' alt="logo"/>
+        <img className="logo" src='./logo.svg' alt="logo"/>
         <div className="titles">
           <div className="title">QUIZINATOR</div>
-          <div className="lead">Are you a dummy? Let's see...</div>
+          <div className="lead">Are you a dummy? {"Let's see..."}</div>
         </div>
       </div>
     </div>

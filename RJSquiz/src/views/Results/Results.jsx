@@ -5,22 +5,7 @@ import AnswerKey from "./components/AnswerKey/AnswerKey";
 
 import "./style.scss";
 
-const createScoreMessage = percent => {
-  let message = "";
-  if (percent === 100) {
-    message = "Perfect Score!";
-  } else if (percent > 80) {
-    message = "Awesome Job!";
-  } else if (percent < 80 && percent > 60) {
-    message = "You Did Ok!";
-  } else {
-    message = "Don't Quit your Day Job!";
-  }
-  return message;
-};
-
-const Results = ({ score, questions }) => {
-  const percent = (score / questions.length) * 100;
+const Results = ({ createScoreMessage, questions, percent, score }) => {
   return (
     <div className="results">
       <Header className="scores">

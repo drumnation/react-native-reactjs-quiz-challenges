@@ -1,93 +1,76 @@
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Loader, Dimmer } from "semantic-ui-react";
-import DevTools from "mobx-react-devtools";
+import { observer } from "mobx-react";
 import React, { Component } from "react";
 
-import { createQuizData as quizData } from "./api/opentdb";
+import { StoreProvider } from "./components/StoreContext/StoreContext";
 import AppHeader from "./components/AppHeader/AppHeader";
 import Quiz from "./views/Quiz/Quiz";
 import Results from "./views/Results/Results";
 
-import { observer } from "mobx-react"
-import { StoreProvider } from "./components/StoreContext/StoreContext";
-
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
 import "./styles/global.scss";
 
 const hasLoaded = loading => loading === false;
-const quizCompleted = (current, questions) =>
-  current >= questions.length;
-
+const quizCompleted = (current, questions) => current >= questions.length;
 @observer
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      questions: [],
-      score: 0,
-      current: 0,
-      loading: null
-    };
-  }
-
-  componentDidMount = async () => {
-    this.setState({ loading: true });
-    const questions = await quizData();
-    this.setState({
-      questions,
-      loading: false
-    });
-  };
-
-  setCurrent = current => this.setState({ current });
-
-  setScore = score => this.setState({ score });
-
   render() {
-    const { store } = this.props;
-    const { loading, current, questions, score } = this.state;
+    const {
+      createScoreMessage,
+      current,
+      loading,
+      onAnswerSelect,
+      percent,
+      questions,
+      results,
+      score,
+      setCurrent,
+      setScore,
+      shuffleChoices
+    } = this.props.store;
     if (hasLoaded(loading)) {
       return (
-        <StoreProvider value={store}>
+        <StoreProvider value={this.props.store}>
           <div className="appContainer">
             <AppHeader />
             <Router>
               <Switch>
-                {quizCompleted(
-                  current,
-                  questions
-                ) ? (
-                    <Route
-                      path="/"
-                      exact
-                      render={() => (
-                        <Results
-                          current={current}
-                          questions={questions}
-                          score={score}
-                          setCurrent={this.setCurrent}
-                          setScore={this.setScore}
-                        />
-                      )}
-                    />)
-                  : (
-                    <Route
-                      path="/"
-                      exact
-                      render={() => (
-                        <Quiz
-                          current={current}
-                          questions={questions}
-                          score={score}
-                          setCurrent={this.setCurrent}
-                          setScore={this.setScore}
-                        />
-                      )}
-                    />
-                  )}
+                {quizCompleted(current, questions) ? (
+                  <Route
+                    path="/"
+                    exact
+                    render={() => (
+                      <Results
+                        createScoreMessage={createScoreMessage}
+                        current={current}
+                        questions={questions}
+                        percent={percent}
+                        score={score}
+                        setCurrent={setCurrent}
+                        setScore={setScore}
+                      />
+                    )}
+                  />
+                ) : (
+                  <Route
+                    path="/"
+                    exact
+                    render={() => (
+                      <Quiz
+                        current={current}
+                        onAnswerSelect={onAnswerSelect}
+                        questions={questions}
+                        results={results}
+                        score={score}
+                        setCurrent={setCurrent}
+                        setScore={setScore}
+                        shuffleChoices={shuffleChoices}
+                      />
+                    )}
+                  />
+                )}
               </Switch>
             </Router>
-            <DevTools />
           </div>
         </StoreProvider>
       );
