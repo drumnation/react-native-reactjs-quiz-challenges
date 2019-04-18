@@ -1,12 +1,15 @@
 import { observable, action, computed } from "mobx";
 
 import { createQuizData as quizData } from "../api/opentdb";
+import createPlugin from "logrocket-mobx";
+import LogRocket from "logrocket";
+import faker from "faker";
 
 export default class Store {
   constructor () {
     this.getQuestions();
   }
-  
+
   @observable current = 0;
   @observable loading = null;
   @observable questions = [];
@@ -79,6 +82,22 @@ export default class Store {
     }
     return message;
   };
+
+  @action
+  startLogRocket = (store) => {
+    LogRocket.init("yyw69f/draynow-web");
+  
+    const lr = createPlugin(LogRocket);
+    lr.watchObject(store);
+    
+    const { name, random, internet, company } = faker;
+    
+    LogRocket.identify(random.uuid(), {
+      name: `${name.firstName()} ${name.lastName()}`,
+      email: `${internet.email()}`,
+      company: `${company.companyName}`
+    });
+  }
 
   @computed
   get percent() {
