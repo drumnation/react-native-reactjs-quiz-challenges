@@ -6,6 +6,5 @@
 => [react-native-cross-platform-responsive-dimensions](https://github.com/drumnation/react-native-cross-platform-responsive-dimensions)
 
 # (React.js) Trivia Game using OpenTrivia API
-## Completed in August 2017 for PureWow
 
 [![quizinator](screenshots/quizinator.png)](https://protected-beyond-32253.herokuapp.com/)
