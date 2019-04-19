@@ -1,6 +1,6 @@
 import { Button, Header, Icon, Label } from "semantic-ui-react";
 import React from "react";
-
+import PropTypes from "prop-types";
 import AnswerKey from "./components/AnswerKey/AnswerKey";
 
 import "./style.scss";
@@ -35,5 +35,12 @@ const Results = ({ createScoreMessage, questions, percent, score }) => {
     </div>
   );
 };
+
+Results.propTypes = {
+  createScoreMessage: PropTypes.func.isRequired,
+  percent: PropTypes.number.isRequired,
+  questions: PropTypes.object.isRequired,
+  score: PropTypes.number.isRequired
+}
 
 export default Results;

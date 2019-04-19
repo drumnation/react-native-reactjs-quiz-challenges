@@ -1,8 +1,10 @@
 import { generate } from "shortid";
+import { PropTypes } from "mobx-react";
 import React from "react";
-import "./style.scss";
 
 import Answer from "./Answer/Answer";
+
+import "./style.scss";
 
 const AnswerKey = ({ questions }) => {
   return (
@@ -21,5 +23,9 @@ const AnswerKey = ({ questions }) => {
     </div>
   );
 };
+
+AnswerKey.propTypes = {
+  questions: PropTypes.observableArray.isRequired
+}
 
 export default AnswerKey;

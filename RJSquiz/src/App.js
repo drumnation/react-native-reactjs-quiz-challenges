@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Loader, Dimmer } from "semantic-ui-react";
-import { observer } from "mobx-react";
+import { observer, PropTypes } from "mobx-react";
 import React, { Component } from "react";
 
 import { StoreProvider } from "./components/StoreContext/StoreContext";
@@ -82,6 +82,10 @@ class App extends Component {
       );
     }
   }
+}
+
+App.propTypes = {
+  store: PropTypes.observableObject.isRequired
 }
 
 export default App;

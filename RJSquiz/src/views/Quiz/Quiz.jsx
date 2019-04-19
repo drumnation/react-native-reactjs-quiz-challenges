@@ -1,8 +1,9 @@
 import { generate } from "shortid";
+import PropTypes from "prop-types";
 import React, { Fragment } from "react";
-import Scorebox from "./components/Scorebox/Scorebox";
 
 import Question from "./components/Question";
+import Scorebox from "./components/Scorebox/Scorebox";
 
 import "./style.scss";
 
@@ -41,5 +42,16 @@ const Quiz = ({
     </div>
   );
 };
+
+Quiz.propTypes = {
+  current: PropTypes.number.isRequired,
+  onAnswerSelect: PropTypes.func.isRequired,
+  questions: PropTypes.object.isRequired,
+  results: PropTypes.object.isRequired,
+  score: PropTypes.number.isRequired,
+  setCurrent: PropTypes.func.isRequired,
+  setScore: PropTypes.func.isRequired,
+  shuffleChoices: PropTypes.func.isRequired
+}
 
 export default Quiz;

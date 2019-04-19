@@ -1,8 +1,10 @@
-import React, { Component } from "react";
-import { Header, Label } from "semantic-ui-react";
-import ResultsLane from "./ResultsLane/ResultsLane";
-import Choice from "./Choice";
 import { generate } from "shortid";
+import { Header, Label } from "semantic-ui-react";
+import { PropTypes } from "prop-types";
+import React, { Component } from "react";
+
+import Choice from "./Choice";
+import ResultsLane from "./ResultsLane/ResultsLane";
 
 const hasAnsweredQuestions = results => results.length !== 0;
 
@@ -49,4 +51,13 @@ export default class Question extends Component {
       </div>
     );
   }
+}
+
+Question.propTypes = {
+  current: PropTypes.number.isRequired,
+  onAnswerSelect: PropTypes.func.isRequired,
+  question: PropTypes.object.isRequired,
+  results: PropTypes.object.isRequired,
+  score: PropTypes.number.isRequired,
+  shuffleChoices: PropTypes.func.isRequired
 }

@@ -1,5 +1,6 @@
-import React, { Fragment } from "react";
 import { Label, Header } from "semantic-ui-react"
+import PropTypes from "prop-types";
+import React, { Fragment } from "react";
 
 const Answer = ({ index, correct, text }) => {
   return (
@@ -13,6 +14,12 @@ const Answer = ({ index, correct, text }) => {
       <hr />
     </Fragment>
   );
+}
+
+Answer.propTypes = {
+  correct: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired
 }
 
 export default Answer;

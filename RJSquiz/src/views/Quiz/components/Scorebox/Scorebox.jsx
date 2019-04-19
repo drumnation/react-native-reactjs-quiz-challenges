@@ -1,5 +1,7 @@
-import React from "react";
 import { Label } from "semantic-ui-react";
+import { PropTypes } from "prop-types";
+import React from "react";
+
 import "./style.scss";
 
 const Scorebox = ({ current, questions, score }) => {
@@ -22,5 +24,11 @@ const Scorebox = ({ current, questions, score }) => {
     </div>
   );
 };
+
+Scorebox.propTypes = {
+  current: PropTypes.number.isRequired,
+  questions: PropTypes.object.isRequired,
+  score: PropTypes.number.isRequired,
+}
 
 export default Scorebox;

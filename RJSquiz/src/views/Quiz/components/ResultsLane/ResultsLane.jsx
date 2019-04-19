@@ -1,5 +1,6 @@
 import React from "react";
 import { generate } from "shortid";
+import { PropTypes } from "prop-types";
 import "./style.scss";
 
 const resultStyle = result => {
@@ -22,4 +23,9 @@ const ResultsLane = ({ results }) => {
     </div>
   );
 };
+
+ResultsLane.propTypes = {
+  results: PropTypes.object.isRequired,
+}
+
 export default ResultsLane;
